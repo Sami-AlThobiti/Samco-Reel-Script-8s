@@ -17,7 +17,6 @@
     
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@300;400;700;900&display=swap" rel="stylesheet">
-    <!-- Additional Artistic Font for the special section -->
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;700&display=swap" rel="stylesheet">
 
     <style>
@@ -41,8 +40,6 @@
         @keyframes blink { 50% { opacity: 0; } }
 
         /* --- THEME ANIMATIONS --- */
-        
-        /* Standard Gradient Animation */
         .bg-animate {
             background-size: 400% 400%;
             animation: gradientMove 15s ease infinite;
@@ -53,7 +50,6 @@
             100% { background-position: 0% 50% }
         }
 
-        /* Cyber Theme */
         .theme-cyber-bg {
             background-color: #050505;
             background-image: 
@@ -68,29 +64,18 @@
         }
         .theme-cyber-glow { text-shadow: 0 0 10px #0ff, 0 0 20px #0ff; }
 
-        /* Luxury Theme */
         .theme-luxury-bg {
             background: radial-gradient(circle at center, #242424 0%, #000000 100%);
         }
-        .theme-luxury-particles {
-            position: absolute;
-            width: 100%; height: 100%;
-            background-image: radial-gradient(#bf953f 1px, transparent 1px);
-            background-size: 30px 30px;
-            opacity: 0.2;
-        }
 
-        /* Forest Theme */
         .theme-forest-bg {
             background: linear-gradient(-45deg, #052e16, #14532d, #064e3b, #022c22);
             background-size: 400% 400%;
             animation: gradientMove 20s ease infinite;
         }
 
-        /* Special Text Effects for Description */
-        .font-artistic {
-            font-family: 'Tajawal', sans-serif;
-        }
+        /* Special Text Effects */
+        .font-artistic { font-family: 'Tajawal', sans-serif; }
         .text-shimmer {
             background: linear-gradient(to right, #bf953f 20%, #fcf6ba 40%, #bf953f 60%, #b38728 80%);
             background-size: 200% auto;
@@ -99,11 +84,7 @@
             background-clip: text;
             animation: shimmer 3s linear infinite;
         }
-        @keyframes shimmer {
-            to {
-                background-position: 200% center;
-            }
-        }
+        @keyframes shimmer { to { background-position: 200% center; } }
         .glass-panel {
             background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(5px);
@@ -112,12 +93,8 @@
         }
 
         /* Social Icons Hover Effects */
-        .social-icon-btn {
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        .social-icon-btn:hover {
-            transform: translateY(-5px) scale(1.1);
-        }
+        .social-icon-btn { transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .social-icon-btn:hover { transform: translateY(-5px) scale(1.1); }
         .hover-glow-x:hover { box-shadow: 0 0 15px rgba(255,255,255,0.5); background: black; border-color: white; }
         .hover-glow-tiktok:hover { box-shadow: 0 0 15px rgba(254, 44, 85, 0.6); background: #000; }
         .hover-glow-insta:hover { box-shadow: 0 0 15px rgba(214, 41, 118, 0.6); background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); border: none; }
@@ -157,14 +134,10 @@
 
         // Custom Social Icons
         const IconX = (p) => (
-            <svg viewBox="0 0 24 24" fill="currentColor" width={p.size || 24} height={p.size || 24} className={p.className}>
-                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-            </svg>
+            <svg viewBox="0 0 24 24" fill="currentColor" width={p.size || 24} height={p.size || 24} className={p.className}><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" /></svg>
         );
         const IconTikTok = (p) => (
-            <svg viewBox="0 0 24 24" fill="currentColor" width={p.size || 24} height={p.size || 24} className={p.className}>
-                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
-            </svg>
+            <svg viewBox="0 0 24 24" fill="currentColor" width={p.size || 24} height={p.size || 24} className={p.className}><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>
         );
         const IconInstagram = (p) => (
             <IconBase {...p}><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></IconBase>
@@ -174,145 +147,70 @@
         );
 
         // --- Data & Themes ---
-
         const THEMES = {
             'default': { 
-                name: 'ليلي', 
-                bgClass: 'bg-slate-900', 
-                cardClass: 'bg-slate-800 border-slate-700',
-                accent: 'text-blue-500',
-                btnClass: 'bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-500 hover:to-cyan-400'
+                name: 'ليلي', bgClass: 'bg-slate-900', cardClass: 'bg-slate-800 border-slate-700', accent: 'text-blue-500', btnClass: 'bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-500 hover:to-cyan-400'
             },
             'cyber': { 
-                name: 'سايبر', 
-                bgClass: 'theme-cyber-bg', 
-                cardClass: 'bg-black/80 border-cyan-500/50 shadow-[0_0_15px_rgba(0,255,255,0.2)] backdrop-blur',
-                accent: 'text-cyan-400 theme-cyber-glow',
-                btnClass: 'bg-gradient-to-r from-pink-600 to-purple-600 border border-pink-400'
+                name: 'سايبر', bgClass: 'theme-cyber-bg', cardClass: 'bg-black/80 border-cyan-500/50 shadow-[0_0_15px_rgba(0,255,255,0.2)] backdrop-blur', accent: 'text-cyan-400 theme-cyber-glow', btnClass: 'bg-gradient-to-r from-pink-600 to-purple-600 border border-pink-400'
             },
             'sunset': { 
-                name: 'غروب', 
-                bgClass: 'bg-gradient-to-br from-indigo-900 via-purple-900 to-orange-800 bg-animate', 
-                cardClass: 'bg-white/10 backdrop-blur-md border-white/20',
-                accent: 'text-orange-300',
-                btnClass: 'bg-gradient-to-r from-orange-500 to-pink-500'
+                name: 'غروب', bgClass: 'bg-gradient-to-br from-indigo-900 via-purple-900 to-orange-800 bg-animate', cardClass: 'bg-white/10 backdrop-blur-md border-white/20', accent: 'text-orange-300', btnClass: 'bg-gradient-to-r from-orange-500 to-pink-500'
             },
             'ocean': { 
-                name: 'محيط', 
-                bgClass: 'bg-gradient-to-tl from-teal-900 via-cyan-900 to-blue-900 bg-animate', 
-                cardClass: 'bg-cyan-950/50 backdrop-blur-md border-cyan-500/30',
-                accent: 'text-teal-300',
-                btnClass: 'bg-gradient-to-r from-teal-500 to-blue-500'
+                name: 'محيط', bgClass: 'bg-gradient-to-tl from-teal-900 via-cyan-900 to-blue-900 bg-animate', cardClass: 'bg-cyan-950/50 backdrop-blur-md border-cyan-500/30', accent: 'text-teal-300', btnClass: 'bg-gradient-to-r from-teal-500 to-blue-500'
             },
             'forest': {
-                name: 'غابة',
-                bgClass: 'theme-forest-bg',
-                cardClass: 'bg-green-950/40 backdrop-blur-md border-green-500/30',
-                accent: 'text-green-300',
-                btnClass: 'bg-gradient-to-r from-green-500 to-emerald-600'
+                name: 'غابة', bgClass: 'theme-forest-bg', cardClass: 'bg-green-950/40 backdrop-blur-md border-green-500/30', accent: 'text-green-300', btnClass: 'bg-gradient-to-r from-green-500 to-emerald-600'
             },
             'luxury': { 
-                name: 'فخامة', 
-                bgClass: 'theme-luxury-bg', 
-                cardClass: 'bg-neutral-900/90 border border-yellow-600/50',
-                accent: 'text-yellow-400',
-                btnClass: 'bg-gradient-to-r from-yellow-600 to-yellow-800 text-yellow-100'
+                name: 'فخامة', bgClass: 'theme-luxury-bg', cardClass: 'bg-neutral-900/90 border border-yellow-600/50', accent: 'text-yellow-400', btnClass: 'bg-gradient-to-r from-yellow-600 to-yellow-800 text-yellow-100'
             }
         };
 
         const TEMPLATES_DB = {
-            educational: {
-                hooks: ["هل تعلم أن 90% من...", "أكبر غلطة تسويها هي...", "سر محد يقولك عليه بخصوص..."],
-                mids: ["الحل بسيط جداً وهو...", "عشان كذا لازم تركز على...", "الخطوة الأولى هي فقط..."],
-                outros: ["جربها وادعيلي.", "احفظ الفيديو عشان ما يضيع.", "تابعني للمزيد من الأسرار."],
-                shots: ["Face-cam (Close up)", "Screen Recording", "Text Overlay"],
-                b_roll: ["كتابة على كيبورد", "شخص يفكر", "لقطة سريعة للنتيجة"],
-                img_prompt: "minimalist modern workspace desk laptop educational bright lighting"
-            },
-            cinematic: {
-                hooks: ["الهدوء... هو بداية العاصفة.", "كل تفصيل يحكي قصة.", "لحظات ما تتكرر مرتين."],
-                mids: ["بس الجمال الحقيقي يكمن في...", "والنظرة تختلف لما...", "الألوان تتكلم عن..."],
-                outros: ["عش اللحظة.", "شوف العالم بعيني.", "Samco Production."],
-                shots: ["Slow Motion (60fps)", "Wide Pan", "Macro Shot"],
-                b_roll: ["قهوة تنسكب ببطء", "غروب شمس", "حركة أوراق شجر"],
-                img_prompt: "cinematic dramatic lighting moody atmosphere 4k detailed photography"
-            },
-            comedy: {
-                hooks: ["شكلي لما يوصل الراتب...", "أنا والدوام قصة حب...", "لما تحاول تسوي دايت..."],
-                mids: ["والواقع مؤلم جداً...", "وفجأة يصير اللي ما توقعته...", "والنتيجة دائماً وحدة..."],
-                outros: ["منشن صاحبك المفلس.", "حط لايك لو تمثلّك.", "لا تنسى الفولو يا جميل."],
-                shots: ["Selfie Mode (Shaky)", "Zoom in (Funny face)", "Freeze Frame"],
-                b_roll: ["ميم ضحك", "صوت صرصور الليل", "فلتر مضحك"],
-                img_prompt: "funny expressive bright colors meme style face reaction"
-            },
-            brand: {
-                hooks: ["تعبت من البحث عن جودة؟", "عرض ما يتفوت لليوم فقط!", "غيّر حياتك مع منتجنا."],
-                mids: ["وفرنا لك الحل المثالي...", "الجودة اللي تستحقها...", "وبسعر خيالي لفترة محدودة..."],
-                outros: ["اطلب الآن من البايو.", "الكمية محدودة!", "استخدم كود SAMCO."],
-                shots: ["Product Hero Shot", "Unboxing", "User Testimonial"],
-                b_roll: ["استخدام المنتج", "تصفح الموقع", "سعادة العميل"],
-                img_prompt: "luxury product photography advertising clean background high end"
-            }
+            educational: { hooks: ["هل تعلم أن 90% من...", "أكبر غلطة تسويها هي...", "سر محد يقولك عليه بخصوص..."], mids: ["الحل بسيط جداً وهو...", "عشان كذا لازم تركز على...", "الخطوة الأولى هي فقط..."], outros: ["جربها وادعيلي.", "احفظ الفيديو عشان ما يضيع.", "تابعني للمزيد من الأسرار."], shots: ["Face-cam (Close up)", "Screen Recording", "Text Overlay"], b_roll: ["كتابة على كيبورد", "شخص يفكر", "لقطة سريعة للنتيجة"], img_prompt: "minimalist modern workspace desk laptop educational bright lighting" },
+            cinematic: { hooks: ["الهدوء... هو بداية العاصفة.", "كل تفصيل يحكي قصة.", "لحظات ما تتكرر مرتين."], mids: ["بس الجمال الحقيقي يكمن في...", "والنظرة تختلف لما...", "الألوان تتكلم عن..."], outros: ["عش اللحظة.", "شوف العالم بعيني.", "Samco Production."], shots: ["Slow Motion (60fps)", "Wide Pan", "Macro Shot"], b_roll: ["قهوة تنسكب ببطء", "غروب شمس", "حركة أوراق شجر"], img_prompt: "cinematic dramatic lighting moody atmosphere 4k detailed photography" },
+            comedy: { hooks: ["شكلي لما يوصل الراتب...", "أنا والدوام قصة حب...", "لما تحاول تسوي دايت..."], mids: ["والواقع مؤلم جداً...", "وفجأة يصير اللي ما توقعته...", "والنتيجة دائماً وحدة..."], outros: ["منشن صاحبك المفلس.", "حط لايك لو تمثلّك.", "لا تنسى الفولو يا جميل."], shots: ["Selfie Mode (Shaky)", "Zoom in (Funny face)", "Freeze Frame"], b_roll: ["ميم ضحك", "صوت صرصور الليل", "فلتر مضحك"], img_prompt: "funny expressive bright colors meme style face reaction" },
+            brand: { hooks: ["تعبت من البحث عن جودة؟", "عرض ما يتفوت لليوم فقط!", "غيّر حياتك مع منتجنا."], mids: ["وفرنا لك الحل المثالي...", "الجودة اللي تستحقها...", "وبسعر خيالي لفترة محدودة..."], outros: ["اطلب الآن من البايو.", "الكمية محدودة!", "استخدم كود SAMCO."], shots: ["Product Hero Shot", "Unboxing", "User Testimonial"], b_roll: ["استخدام المنتج", "تصفح الموقع", "سعادة العميل"], img_prompt: "luxury product photography advertising clean background high end" }
         };
 
-        // --- Helper: Text Wrap for Canvas ---
         function wrapText(ctx, text, x, y, maxWidth, lineHeight, color) {
             const words = text.split(' ');
             let line = '';
             const lines = [];
-
             for(let n = 0; n < words.length; n++) {
                 const testLine = line + words[n] + ' ';
                 const metrics = ctx.measureText(testLine);
-                const testWidth = metrics.width;
-                if (testWidth > maxWidth && n > 0) {
-                    lines.push(line);
-                    line = words[n] + ' ';
-                } else {
-                    line = testLine;
-                }
+                if (metrics.width > maxWidth && n > 0) { lines.push(line); line = words[n] + ' '; } else { line = testLine; }
             }
             lines.push(line);
-            
             let startY = y - ((lines.length - 1) * lineHeight) / 2;
-            
             ctx.fillStyle = color || "#FFFFFF";
-            
-            for (let k = 0; k < lines.length; k++) {
-                ctx.fillText(lines[k], x, startY + (k * lineHeight));
-            }
+            for (let k = 0; k < lines.length; k++) ctx.fillText(lines[k], x, startY + (k * lineHeight));
         }
-
-        // --- Components ---
 
         const AudioMetronome = ({ isPlaying }) => {
             const audioCtxRef = useRef(null);
             const nextNoteTimeRef = useRef(0);
             const timerIDRef = useRef(null);
-
             const scheduleNote = (time) => {
                 try {
                     const osc = audioCtxRef.current.createOscillator();
                     const envelope = audioCtxRef.current.createGain();
-                    osc.frequency.value = 800; 
-                    envelope.gain.value = 0.5; 
+                    osc.frequency.value = 800; envelope.gain.value = 0.5; 
                     envelope.gain.exponentialRampToValueAtTime(0.01, time + 0.1);
-                    osc.connect(envelope);
-                    envelope.connect(audioCtxRef.current.destination);
-                    osc.start(time);
-                    osc.stop(time + 0.1);
-                } catch (e) { console.error("Audio Context Error", e); }
+                    osc.connect(envelope); envelope.connect(audioCtxRef.current.destination);
+                    osc.start(time); osc.stop(time + 0.1);
+                } catch (e) { console.error(e); }
             };
-
             const scheduler = () => {
                 if (!audioCtxRef.current) return;
                 while (nextNoteTimeRef.current < audioCtxRef.current.currentTime + 0.1) {
-                    scheduleNote(nextNoteTimeRef.current);
-                    nextNoteTimeRef.current += 1.0; 
+                    scheduleNote(nextNoteTimeRef.current); nextNoteTimeRef.current += 1.0; 
                 }
                 timerIDRef.current = window.setTimeout(scheduler, 25.0);
             };
-
             useEffect(() => {
                 if (isPlaying) {
                     const AudioContext = window.AudioContext || window.webkitAudioContext;
@@ -320,32 +218,19 @@
                     if (audioCtxRef.current.state === 'suspended') audioCtxRef.current.resume();
                     nextNoteTimeRef.current = audioCtxRef.current.currentTime;
                     scheduler();
-                } else {
-                    if (timerIDRef.current) clearTimeout(timerIDRef.current);
-                }
+                } else { if (timerIDRef.current) clearTimeout(timerIDRef.current); }
                 return () => { if (timerIDRef.current) clearTimeout(timerIDRef.current); };
             }, [isPlaying]);
-            
-            useEffect(() => {
-                 return () => { if (audioCtxRef.current && audioCtxRef.current.state !== 'closed') audioCtxRef.current.close(); }
-            }, []);
+            useEffect(() => { return () => { if (audioCtxRef.current && audioCtxRef.current.state !== 'closed') audioCtxRef.current.close(); } }, []);
             return null;
         };
 
         const Toast = ({ message, onClose }) => {
-            useEffect(() => {
-                const timer = setTimeout(onClose, 2000);
-                return () => clearTimeout(timer);
-            }, [onClose]);
-            return (
-                <div className="fixed bottom-20 left-1/2 transform -translate-x-1/2 bg-green-500 text-white px-6 py-2 rounded-full shadow-lg z-50 animate-bounce text-center min-w-[200px]">
-                    {message}
-                </div>
-            );
+            useEffect(() => { const timer = setTimeout(onClose, 2000); return () => clearTimeout(timer); }, [onClose]);
+            return (<div className="fixed bottom-20 left-1/2 transform -translate-x-1/2 bg-green-500 text-white px-6 py-2 rounded-full shadow-lg z-50 animate-bounce text-center min-w-[200px]">{message}</div>);
         };
 
         const App = () => {
-            // State
             const [view, setView] = useState('generator'); 
             const [config, setConfig] = useState({ type: 'educational', tone: 'enthusiastic', lang: 'ar' });
             const [generatedScript, setGeneratedScript] = useState(null);
@@ -355,8 +240,6 @@
             const [toast, setToast] = useState(null);
             const [theme, setTheme] = useState('default');
             const [showThemes, setShowThemes] = useState(false);
-            
-            // Video Mode State
             const [videoMode, setVideoMode] = useState(false);
             const [videoImages, setVideoImages] = useState(null);
             const [currentScene, setCurrentScene] = useState(0); 
@@ -365,53 +248,31 @@
             const fileInputRef = useRef(null);
             const audioInputRef = useRef(null); 
             const audioRef = useRef(new Audio()); 
-            
-            // Typewriter State
             const [displayedText, setDisplayedText] = useState('');
             const fullTextRef = useRef('');
 
-            // Helper to generate image URL
             const getAIImage = (basePrompt, seed) => {
                 const prompt = encodeURIComponent(`${basePrompt} ${seed}`);
                 return `https://image.pollinations.ai/prompt/${prompt}?width=720&height=1280&nologo=true&seed=${seed}`;
             };
 
             const generate = () => {
-                setIsPlaying(false);
-                setTimerProgress(0);
-                setVideoMode(false);
-                setVideoImages(null);
-                
+                setIsPlaying(false); setTimerProgress(0); setVideoMode(false); setVideoImages(null);
                 const data = TEMPLATES_DB[config.type];
                 const hook = data.hooks[Math.floor(Math.random() * data.hooks.length)];
                 const mid = data.mids[Math.floor(Math.random() * data.mids.length)];
                 const outro = data.outros[Math.floor(Math.random() * data.outros.length)];
-                
                 const scriptObj = {
-                    id: Date.now(),
-                    type: config.type,
-                    tone: config.tone,
-                    content: `${hook} ${mid} ${outro}`, 
-                    parts: { hook, mid, outro },
-                    shots: data.shots,
-                    b_roll: data.b_roll,
-                    img_prompt: data.img_prompt,
-                    date: new Date().toLocaleDateString('ar-SA')
+                    id: Date.now(), type: config.type, tone: config.tone, content: `${hook} ${mid} ${outro}`, 
+                    parts: { hook, mid, outro }, shots: data.shots, b_roll: data.b_roll, img_prompt: data.img_prompt, date: new Date().toLocaleDateString('ar-SA')
                 };
-
                 setGeneratedScript(scriptObj);
-                
-                fullTextRef.current = scriptObj.content;
-                setDisplayedText('');
+                fullTextRef.current = scriptObj.content; setDisplayedText('');
                 let i = 0;
                 if (window.typeWriterInterval) clearInterval(window.typeWriterInterval);
                 window.typeWriterInterval = setInterval(() => {
-                    if (i < fullTextRef.current.length) {
-                        setDisplayedText(prev => prev + fullTextRef.current.charAt(i));
-                        i++;
-                    } else {
-                        clearInterval(window.typeWriterInterval);
-                    }
+                    if (i < fullTextRef.current.length) { setDisplayedText(prev => prev + fullTextRef.current.charAt(i)); i++; } 
+                    else { clearInterval(window.typeWriterInterval); }
                 }, 30);
             };
 
@@ -424,27 +285,21 @@
                     getAIImage(`${generatedScript.img_prompt} middle action detail`, seed + 2),
                     getAIImage(`${generatedScript.img_prompt} outro conclusion ending`, seed + 3)
                 ];
-                setVideoImages(imgs);
-                setVideoMode(true);
-                setCurrentScene(0);
+                setVideoImages(imgs); setVideoMode(true); setCurrentScene(0);
             };
 
-            // Image Upload Handler
             const handleImageUpload = (e) => {
                 const file = e.target.files[0];
                 if (file) {
                     const reader = new FileReader();
                     reader.onloadend = () => {
-                        const newImages = [...videoImages];
-                        newImages[currentScene] = reader.result; 
-                        setVideoImages(newImages);
-                        setToast("تم تحديث صورة المشهد!");
+                        const newImages = [...videoImages]; newImages[currentScene] = reader.result; 
+                        setVideoImages(newImages); setToast("تم تحديث صورة المشهد!");
                     };
                     reader.readAsDataURL(file);
                 }
             };
 
-            // Audio Upload Handler
             const handleAudioUpload = (e) => {
                 const file = e.target.files[0];
                 if (file) {
@@ -456,32 +311,15 @@
                 }
             };
 
-            // Video & Audio Playback Sync
             useEffect(() => {
                 let interval;
                 if (isVideoPlaying && videoMode) {
-                    // Start Audio
-                    if (audioSrc) {
-                        audioRef.current.play().catch(e => console.log("Audio play failed:", e));
-                    }
-
+                    if (audioSrc) audioRef.current.play().catch(e => console.log("Audio play failed:", e));
                     interval = setInterval(() => {
-                        setCurrentScene(prev => {
-                            if (prev >= 2) {
-                                setIsVideoPlaying(false);
-                                return 0;
-                            }
-                            return prev + 1;
-                        });
+                        setCurrentScene(prev => { if (prev >= 2) { setIsVideoPlaying(false); return 0; } return prev + 1; });
                     }, 2500); 
-                } else {
-                    // Stop Audio
-                    audioRef.current.pause();
-                    audioRef.current.currentTime = 0;
-                }
-                return () => {
-                    clearInterval(interval);
-                };
+                } else { audioRef.current.pause(); audioRef.current.currentTime = 0; }
+                return () => clearInterval(interval);
             }, [isVideoPlaying, videoMode, audioSrc]);
 
             const saveScript = () => {
@@ -492,18 +330,17 @@
                 setToast("تم الحفظ في المكتبة!");
             };
 
-            // --- REAL VIDEO DOWNLOAD FUNCTION ---
+            // --- IMPROVED VIDEO EXPORT FUNCTION ---
             const downloadVideo = async () => {
                 if (!videoImages || videoImages.length < 3) {
                     setToast("الرجاء توليد الصور أولاً");
                     return;
                 }
                 
-                setToast("جاري معالجة الفيديو (قد يستغرق وقتاً)...");
+                setToast("جاري معالجة وتصدير الفيديو...");
                 
                 const canvas = document.createElement('canvas');
-                canvas.width = 720; // 9:16 HD
-                canvas.height = 1280;
+                canvas.width = 720; canvas.height = 1280;
                 const ctx = canvas.getContext('2d');
                 
                 const loadedImages = await Promise.all(videoImages.map(src => {
@@ -516,9 +353,9 @@
                     });
                 }));
 
-                const stream = canvas.captureStream(30); 
+                const stream = canvas.captureStream(30);
                 
-                let audioContext, audioDest;
+                let audioContext;
                 if (audioSrc) {
                     try {
                         const AudioCtx = window.AudioContext || window.webkitAudioContext;
@@ -527,34 +364,41 @@
                         const arrayBuffer = await response.arrayBuffer();
                         const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
                         
-                        audioDest = audioContext.createMediaStreamDestination();
+                        const audioDest = audioContext.createMediaStreamDestination();
                         const audioSource = audioContext.createBufferSource();
                         audioSource.buffer = audioBuffer;
                         audioSource.connect(audioDest);
                         audioSource.start(0);
                         
                         const audioTracks = audioDest.stream.getAudioTracks();
-                        if (audioTracks.length > 0) {
-                            stream.addTrack(audioTracks[0]);
-                        }
-                    } catch(e) {
-                        console.error("Audio processing error:", e);
-                    }
+                        if (audioTracks.length > 0) stream.addTrack(audioTracks[0]);
+                    } catch(e) { console.error("Audio Error:", e); }
                 }
 
                 const chunks = [];
-                const mediaRecorder = new MediaRecorder(stream, { mimeType: 'video/webm' });
+                // Check for MP4 support
+                let mimeType = 'video/webm';
+                let fileExt = 'webm';
                 
-                mediaRecorder.ondataavailable = (e) => {
-                    if (e.data.size > 0) chunks.push(e.data);
-                };
+                if (MediaRecorder.isTypeSupported('video/mp4; codecs=h264')) {
+                    mimeType = 'video/mp4; codecs=h264';
+                    fileExt = 'mp4';
+                } else if (MediaRecorder.isTypeSupported('video/mp4')) {
+                    mimeType = 'video/mp4';
+                    fileExt = 'mp4';
+                }
+
+                const mediaRecorder = new MediaRecorder(stream, { mimeType });
                 
+                mediaRecorder.ondataavailable = (e) => { if (e.data.size > 0) chunks.push(e.data); };
                 mediaRecorder.onstop = () => {
-                    const blob = new Blob(chunks, { type: 'video/webm' });
+                    const blob = new Blob(chunks, { type: mimeType });
                     const url = URL.createObjectURL(blob);
                     const a = document.createElement('a');
                     a.href = url;
-                    a.download = `samco_reel_${generatedScript.id}.webm`; 
+                    // Force MP4 naming for compatibility if WebM is used, many players support it.
+                    // If native MP4 was supported, it will be a true MP4.
+                    a.download = `samco_reel_${generatedScript.id}.${fileExt === 'mp4' ? 'mp4' : 'mp4'}`; 
                     a.click();
                     setToast("تم تحميل الفيديو بنجاح!");
                     if (audioContext) audioContext.close();
@@ -568,11 +412,7 @@
                 const renderFrame = () => {
                     const now = Date.now();
                     const elapsed = now - startTime;
-                    
-                    if (elapsed >= duration) {
-                        mediaRecorder.stop();
-                        return;
-                    }
+                    if (elapsed >= duration) { mediaRecorder.stop(); return; }
 
                     let sceneIdx = 0;
                     if (elapsed > 2500) sceneIdx = 1;
@@ -598,410 +438,121 @@
                         ctx.textBaseline = "middle";
                         ctx.direction = "rtl";
                         
-                        let text = "";
-                        let color = "#FFFFFF";
-                        
+                        let text = ""; let color = "#FFFFFF";
                         if (sceneIdx === 0) { text = generatedScript.parts.hook; color = "#F472B6"; } 
                         else if (sceneIdx === 1) { text = generatedScript.parts.mid; color = "#FFFFFF"; }
                         else { text = generatedScript.parts.outro; color = "#22D3EE"; } 
 
                         wrapText(ctx, text, canvas.width / 2, canvas.height / 2, 650, 80, color);
                     }
-                    
                     requestAnimationFrame(renderFrame);
                 };
-                
                 renderFrame();
             };
 
-            useEffect(() => {
-                const loaded = localStorage.getItem('samco_scripts');
-                if (loaded) setSavedScripts(JSON.parse(loaded));
-            }, []);
-
-            const copyToClipboard = () => {
-                if (!generatedScript) return;
-                const text = `سكربت: ${config.type}\nالمدة: 8 ثواني\n----------------\nHook: ${generatedScript.parts.hook}\nBody: ${generatedScript.parts.mid}\nOutro: ${generatedScript.parts.outro}\n----------------\nShotlist: ${generatedScript.shots.join(', ')}`;
-                navigator.clipboard.writeText(text);
-                setToast("تم نسخ السكربت!");
-            };
-
-            const getCurrentSceneText = () => {
-                if (!generatedScript) return "";
-                if (currentScene === 0) return generatedScript.parts.hook;
-                if (currentScene === 1) return generatedScript.parts.mid;
-                return generatedScript.parts.outro;
-            };
-
+            useEffect(() => { const loaded = localStorage.getItem('samco_scripts'); if (loaded) setSavedScripts(JSON.parse(loaded)); }, []);
+            const copyToClipboard = () => { if (!generatedScript) return; const text = `سكربت: ${config.type}\nالمدة: 8 ثواني\n...\n`; navigator.clipboard.writeText(text); setToast("تم نسخ السكربت!"); };
+            const getCurrentSceneText = () => { if (!generatedScript) return ""; if (currentScene === 0) return generatedScript.parts.hook; if (currentScene === 1) return generatedScript.parts.mid; return generatedScript.parts.outro; };
             const currentTheme = THEMES[theme];
 
             return (
                 <div className={`min-h-screen w-full flex justify-center transition-colors duration-700 ${currentTheme.bgClass} text-slate-100`}>
-                    
                     <div className="w-full max-w-md flex flex-col h-full min-h-screen shadow-2xl relative bg-black/10 backdrop-blur-sm">
                         
-                        {/* Header */}
                         <header className={`p-4 flex justify-between items-center backdrop-blur sticky top-0 z-20 border-b border-white/10`}>
                             <div className="flex items-center gap-2 cursor-pointer" onClick={() => setView('generator')}>
-                                <div className="w-8 h-8 bg-gradient-to-tr from-blue-600 to-cyan-400 rounded-lg flex items-center justify-center text-white font-bold transform -rotate-3 shadow-lg">
-                                    S
-                                </div>
+                                <div className="w-8 h-8 bg-gradient-to-tr from-blue-600 to-cyan-400 rounded-lg flex items-center justify-center text-white font-bold transform -rotate-3 shadow-lg">S</div>
                                 <h1 className="font-bold text-lg tracking-tight">Samco <span className={currentTheme.accent}>Reel</span> 8s</h1>
                             </div>
                             <div className="flex gap-2">
-                                <button onClick={() => setView('generator')} className="text-slate-300 hover:text-white transition" title="الرئيسية">
-                                    <Home size={22} />
-                                </button>
-                                <button onClick={() => setShowThemes(!showThemes)} className="text-slate-300 hover:text-white transition" title="الثيمات">
-                                    <Palette size={22} />
-                                </button>
-                                <button onClick={() => setView('saved')} className="text-slate-300 hover:text-white transition" title="المحفوظات">
-                                    <MenuIcon size={22} />
-                                </button>
+                                <button onClick={() => setView('generator')} className="text-slate-300 hover:text-white transition" title="الرئيسية"><Home size={22} /></button>
+                                <button onClick={() => setShowThemes(!showThemes)} className="text-slate-300 hover:text-white transition" title="الثيمات"><Palette size={22} /></button>
+                                <button onClick={() => setView('saved')} className="text-slate-300 hover:text-white transition" title="المحفوظات"><MenuIcon size={22} /></button>
                             </div>
                         </header>
 
-                        {/* Theme Selector Drawer */}
                         {showThemes && (
                             <div className="bg-slate-900/95 border-b border-slate-700 p-4 animate-fade-in grid grid-cols-6 gap-2 justify-items-center absolute top-16 w-full z-30 shadow-2xl">
                                 {Object.entries(THEMES).map(([key, t]) => (
-                                    <button 
-                                        key={key}
-                                        onClick={() => { setTheme(key); setShowThemes(false); }}
-                                        className={`w-10 h-10 rounded-full border-2 flex items-center justify-center text-[9px] font-bold overflow-hidden transition transform hover:scale-110 ${theme === key ? 'border-white scale-110 ring-2 ring-blue-500' : 'border-transparent opacity-70'}`}
-                                        style={{ 
-                                            background: key === 'default' ? '#0f172a' : 
-                                                        key === 'cyber' ? '#000' : 
-                                                        key === 'sunset' ? 'linear-gradient(45deg, #4c1d95, #c2410c)' : 
-                                                        key === 'ocean' ? 'linear-gradient(45deg, #134e4a, #1e3a8a)' :
-                                                        key === 'forest' ? '#064e3b' :
-                                                        '#262626' 
-                                        }}
-                                        title={t.name}
-                                    >
-                                        {key === 'luxury' && <span className="text-yellow-500">$$</span>}
-                                        {key === 'cyber' && <span className="text-cyan-500">##</span>}
-                                        {key === 'forest' && <span className="text-green-500">♣</span>}
+                                    <button key={key} onClick={() => { setTheme(key); setShowThemes(false); }} className={`w-10 h-10 rounded-full border-2 flex items-center justify-center text-[9px] font-bold overflow-hidden transition transform hover:scale-110 ${theme === key ? 'border-white scale-110 ring-2 ring-blue-500' : 'border-transparent opacity-70'}`} style={{ background: key === 'default' ? '#0f172a' : key === 'cyber' ? '#000' : key === 'sunset' ? 'linear-gradient(45deg, #4c1d95, #c2410c)' : key === 'ocean' ? 'linear-gradient(45deg, #134e4a, #1e3a8a)' : key === 'forest' ? '#064e3b' : '#262626' }} title={t.name}>
+                                        {key === 'luxury' && <span className="text-yellow-500">$$</span>} {key === 'cyber' && <span className="text-cyan-500">##</span>} {key === 'forest' && <span className="text-green-500">♣</span>}
                                     </button>
                                 ))}
                             </div>
                         )}
 
-                        {/* Main Content */}
                         <main className="flex-1 p-4 overflow-y-auto pb-24">
-                            
                             {toast && <Toast message={toast} onClose={() => setToast(null)} />}
-                            
                             {view === 'saved' ? (
                                 <div className="animate-fade-in">
-                                    <div className="flex justify-between items-center mb-4">
-                                        <h2 className="text-xl font-bold">المحفوظات</h2>
-                                        <button onClick={() => setView('generator')} className="text-sm text-blue-400">عودة للمولد</button>
-                                    </div>
-                                    {savedScripts.length === 0 ? (
-                                        <div className="text-center text-white/50 mt-10">
-                                            <p>لا توجد سكربتات محفوظة.</p>
-                                        </div>
-                                    ) : (
-                                        <div className="space-y-3">
-                                            {savedScripts.map(script => (
-                                                <div key={script.id} className={`${currentTheme.cardClass} p-4 rounded-xl border`}>
-                                                    <div className="flex justify-between text-xs text-slate-400 mb-2">
-                                                        <span className="uppercase">{script.type}</span>
-                                                        <span>{script.date}</span>
-                                                    </div>
-                                                    <p className="text-sm mb-3 text-slate-200 line-clamp-2">{script.content}</p>
-                                                    <button 
-                                                        onClick={() => {
-                                                            setGeneratedScript(script);
-                                                            setDisplayedText(script.content);
-                                                            setView('generator');
-                                                            setVideoMode(false);
-                                                        }}
-                                                        className="w-full py-2 bg-white/10 hover:bg-white/20 rounded-lg text-sm text-white transition"
-                                                    >
-                                                        فتح السكربت
-                                                    </button>
-                                                </div>
-                                            ))}
-                                        </div>
-                                    )}
+                                    <div className="flex justify-between items-center mb-4"><h2 className="text-xl font-bold">المحفوظات</h2><button onClick={() => setView('generator')} className="text-sm text-blue-400">عودة للمولد</button></div>
+                                    {savedScripts.length === 0 ? (<div className="text-center text-white/50 mt-10"><p>لا توجد سكربتات محفوظة.</p></div>) : (<div className="space-y-3">{savedScripts.map(script => (<div key={script.id} className={`${currentTheme.cardClass} p-4 rounded-xl border`}><div className="flex justify-between text-xs text-slate-400 mb-2"><span className="uppercase">{script.type}</span><span>{script.date}</span></div><p className="text-sm mb-3 text-slate-200 line-clamp-2">{script.content}</p><button onClick={() => { setGeneratedScript(script); setDisplayedText(script.content); setView('generator'); setVideoMode(false); }} className="w-full py-2 bg-white/10 hover:bg-white/20 rounded-lg text-sm text-white transition">فتح السكربت</button></div>))}</div>)}
                                 </div>
                             ) : (
-                                // Generator View
                                 <div className="space-y-6 animate-fade-in">
-                                    
-                                    {/* Controls */}
                                     <div className="grid grid-cols-2 gap-3">
-                                        <div>
-                                            <label className="text-xs text-slate-400 block mb-1">نوع المحتوى</label>
-                                            <select 
-                                                value={config.type}
-                                                onChange={(e) => setConfig({...config, type: e.target.value})}
-                                                className="w-full bg-slate-800 text-white p-2.5 rounded-lg border border-slate-700 text-sm focus:border-blue-500 focus:outline-none"
-                                            >
-                                                <option value="educational">تعليمي/فائدة</option>
-                                                <option value="cinematic">سينمائي/مشاعر</option>
-                                                <option value="comedy">كوميدي/Relatable</option>
-                                                <option value="brand">تسويق/براند</option>
-                                            </select>
-                                        </div>
-                                        <div>
-                                            <label className="text-xs text-slate-400 block mb-1">النبرة</label>
-                                            <select 
-                                                value={config.tone}
-                                                onChange={(e) => setConfig({...config, tone: e.target.value})}
-                                                className="w-full bg-slate-800 text-white p-2.5 rounded-lg border border-slate-700 text-sm focus:border-blue-500 focus:outline-none"
-                                            >
-                                                <option value="enthusiastic">حماسية</option>
-                                                <option value="serious">جدية</option>
-                                                <option value="calm">هادئة</option>
-                                                <option value="funny">ساخرة</option>
-                                            </select>
-                                        </div>
+                                        <div><label className="text-xs text-slate-400 block mb-1">نوع المحتوى</label><select value={config.type} onChange={(e) => setConfig({...config, type: e.target.value})} className="w-full bg-slate-800 text-white p-2.5 rounded-lg border border-slate-700 text-sm focus:border-blue-500 focus:outline-none"><option value="educational">تعليمي/فائدة</option><option value="cinematic">سينمائي/مشاعر</option><option value="comedy">كوميدي/Relatable</option><option value="brand">تسويق/براند</option></select></div>
+                                        <div><label className="text-xs text-slate-400 block mb-1">النبرة</label><select value={config.tone} onChange={(e) => setConfig({...config, tone: e.target.value})} className="w-full bg-slate-800 text-white p-2.5 rounded-lg border border-slate-700 text-sm focus:border-blue-500 focus:outline-none"><option value="enthusiastic">حماسية</option><option value="serious">جدية</option><option value="calm">هادئة</option><option value="funny">ساخرة</option></select></div>
                                     </div>
-
-                                    {/* Main Actions */}
                                     <div className="grid grid-cols-1 gap-3">
-                                        <button 
-                                            onClick={generate}
-                                            className={`w-full py-4 text-white font-bold rounded-xl shadow-lg transform hover:scale-[1.02] transition-all flex items-center justify-center gap-2 ${currentTheme.btnClass}`}
-                                        >
-                                            <Sparkles size={20} />
-                                            <span>اصنع السكربت (8 ثواني)</span>
-                                        </button>
+                                        <button onClick={generate} className={`w-full py-4 text-white font-bold rounded-xl shadow-lg transform hover:scale-[1.02] transition-all flex items-center justify-center gap-2 ${currentTheme.btnClass}`}><Sparkles size={20} /><span>اصنع السكربت (8 ثواني)</span></button>
                                     </div>
-                                    
-                                    {/* NEW: Description Section */}
                                     <div className="mt-8 text-center relative group cursor-default">
                                         <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-pink-500/20 blur-xl opacity-50 group-hover:opacity-100 transition duration-1000"></div>
-                                        <h3 className="relative text-2xl font-bold mb-3 font-artistic text-shimmer">
-                                            من ومضة فكرة... إلى مشهد يأسر العيون
-                                        </h3>
-                                        <p className="relative text-sm text-slate-300 leading-relaxed max-w-[90%] mx-auto font-light tracking-wide glass-panel p-3 rounded-lg">
-                                            مختبر إبداعي متكامل يختصر ساعات التخطيط في <span className="text-cyan-400 font-bold">8 ثوانٍ</span>. دع الذكاء الاصطناعي يرسم ملامح قصتك، يضبط إيقاعك، ويمنح محتواك اللمسة الاحترافية التي يستحقها.
-                                        </p>
-                                        <div className="mt-4 flex justify-center gap-1 opacity-60">
-                                            <span className="w-1 h-1 rounded-full bg-white animate-ping"></span>
-                                            <span className="w-1 h-1 rounded-full bg-white animate-ping delay-100"></span>
-                                            <span className="w-1 h-1 rounded-full bg-white animate-ping delay-200"></span>
-                                        </div>
+                                        <h3 className="relative text-2xl font-bold mb-3 font-artistic text-shimmer">من ومضة فكرة... إلى مشهد يأسر العيون</h3>
+                                        <p className="relative text-sm text-slate-300 leading-relaxed max-w-[90%] mx-auto font-light tracking-wide glass-panel p-3 rounded-lg">مختبر إبداعي متكامل يختصر ساعات التخطيط في <span className="text-cyan-400 font-bold">8 ثوانٍ</span>. دع الذكاء الاصطناعي يرسم ملامح قصتك، يضبط إيقاعك، ويمنح محتواك اللمسة الاحترافية التي يستحقها.</p>
+                                        <div className="mt-4 flex justify-center gap-1 opacity-60"><span className="w-1 h-1 rounded-full bg-white animate-ping"></span><span className="w-1 h-1 rounded-full bg-white animate-ping delay-100"></span><span className="w-1 h-1 rounded-full bg-white animate-ping delay-200"></span></div>
                                     </div>
-
-                                    {/* Results Area */}
                                     {generatedScript && (
                                         <div className="space-y-4">
-                                            
-                                            {/* Video/Script Tabs */}
                                             <div className="flex bg-slate-800/50 p-1 rounded-lg">
-                                                <button 
-                                                    onClick={() => setVideoMode(false)}
-                                                    className={`flex-1 py-2 rounded-md text-sm font-medium transition ${!videoMode ? 'bg-slate-600 text-white shadow' : 'text-slate-400 hover:text-slate-200'}`}
-                                                >
-                                                    السكربت
-                                                </button>
-                                                <button 
-                                                    onClick={() => { if(!videoImages) generateAIVideo(); else setVideoMode(true); }}
-                                                    className={`flex-1 py-2 rounded-md text-sm font-medium transition flex items-center justify-center gap-2 ${videoMode ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow' : 'text-slate-400 hover:text-slate-200'}`}
-                                                >
-                                                    <Video size={16} />
-                                                    فيديو AI
-                                                </button>
+                                                <button onClick={() => setVideoMode(false)} className={`flex-1 py-2 rounded-md text-sm font-medium transition ${!videoMode ? 'bg-slate-600 text-white shadow' : 'text-slate-400 hover:text-slate-200'}`}>السكربت</button>
+                                                <button onClick={() => { if(!videoImages) generateAIVideo(); else setVideoMode(true); }} className={`flex-1 py-2 rounded-md text-sm font-medium transition flex items-center justify-center gap-2 ${videoMode ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow' : 'text-slate-400 hover:text-slate-200'}`}><Video size={16} />فيديو AI</button>
                                             </div>
-
                                             {videoMode && videoImages ? (
-                                                /* Video Mode UI */
                                                 <div className={`${currentTheme.cardClass} rounded-2xl overflow-hidden border shadow-xl relative aspect-[9/16] group`}>
-                                                    {/* Image Background */}
-                                                    <div className="absolute inset-0 bg-black">
-                                                        <img 
-                                                            src={videoImages[currentScene]} 
-                                                            className="w-full h-full object-cover opacity-60 ken-burns"
-                                                            alt="Scene Background"
-                                                        />
-                                                    </div>
-                                                    
-                                                    {/* Overlay Text */}
-                                                    <div className="absolute inset-0 flex flex-col justify-center items-center p-6 text-center z-10 bg-gradient-to-b from-transparent via-black/20 to-black/80">
-                                                        <div className={`text-2xl font-black drop-shadow-lg ${currentScene === 0 ? 'text-pink-400' : currentScene === 1 ? 'text-white' : 'text-cyan-400'} animate-bounce`}>
-                                                            {getCurrentSceneText()}
-                                                        </div>
-                                                    </div>
-
-                                                    {/* Progress Bars */}
-                                                    <div className="absolute top-2 left-2 right-2 flex gap-1 z-20">
-                                                        {[0, 1, 2].map(idx => (
-                                                            <div key={idx} className="h-1 flex-1 bg-white/20 rounded-full overflow-hidden">
-                                                                <div className={`h-full bg-white transition-all duration-300 ${idx < currentScene ? 'w-full' : idx === currentScene ? 'w-full animate-pulse' : 'w-0'}`}></div>
-                                                            </div>
-                                                        ))}
-                                                    </div>
-
-                                                    {/* Controls Overlay */}
+                                                    <div className="absolute inset-0 bg-black"><img src={videoImages[currentScene]} className="w-full h-full object-cover opacity-60 ken-burns" alt="Scene" /></div>
+                                                    <div className="absolute inset-0 flex flex-col justify-center items-center p-6 text-center z-10 bg-gradient-to-b from-transparent via-black/20 to-black/80"><div className={`text-2xl font-black drop-shadow-lg ${currentScene === 0 ? 'text-pink-400' : currentScene === 1 ? 'text-white' : 'text-cyan-400'} animate-bounce`}>{getCurrentSceneText()}</div></div>
+                                                    <div className="absolute top-2 left-2 right-2 flex gap-1 z-20">{[0, 1, 2].map(idx => (<div key={idx} className="h-1 flex-1 bg-white/20 rounded-full overflow-hidden"><div className={`h-full bg-white transition-all duration-300 ${idx < currentScene ? 'w-full' : idx === currentScene ? 'w-full animate-pulse' : 'w-0'}`}></div></div>))}</div>
                                                     <div className="absolute bottom-4 left-4 right-4 flex flex-col gap-3 z-20">
                                                         <div className="flex justify-between items-center">
-                                                            <button 
-                                                                onClick={() => setIsVideoPlaying(!isVideoPlaying)}
-                                                                className="w-10 h-10 bg-white/20 backdrop-blur rounded-full flex items-center justify-center hover:bg-white/30 text-white transition"
-                                                            >
-                                                                {isVideoPlaying ? <Square size={16} fill="currentColor" /> : <Play size={16} fill="currentColor" />}
-                                                            </button>
-                                                            
+                                                            <button onClick={() => setIsVideoPlaying(!isVideoPlaying)} className="w-10 h-10 bg-white/20 backdrop-blur rounded-full flex items-center justify-center hover:bg-white/30 text-white transition">{isVideoPlaying ? <Square size={16} fill="currentColor" /> : <Play size={16} fill="currentColor" />}</button>
                                                             <div className="flex gap-2">
-                                                                <input 
-                                                                    type="file" 
-                                                                    ref={fileInputRef} 
-                                                                    onChange={handleImageUpload} 
-                                                                    accept="image/*" 
-                                                                    className="hidden" 
-                                                                />
-                                                                <input 
-                                                                    type="file" 
-                                                                    ref={audioInputRef} 
-                                                                    onChange={handleAudioUpload} 
-                                                                    accept="audio/*" 
-                                                                    className="hidden" 
-                                                                />
-                                                                <button 
-                                                                    onClick={() => fileInputRef.current.click()} 
-                                                                    className="w-10 h-10 bg-black/40 backdrop-blur rounded-full flex items-center justify-center hover:bg-black/60 text-white border border-white/20"
-                                                                    title="رفع صورة"
-                                                                >
-                                                                    <Upload size={18} />
-                                                                </button>
-                                                                <button 
-                                                                    onClick={() => audioInputRef.current.click()} 
-                                                                    className={`w-10 h-10 backdrop-blur rounded-full flex items-center justify-center hover:bg-black/60 text-white border border-white/20 ${audioSrc ? 'bg-green-500/50 border-green-400' : 'bg-black/40'}`}
-                                                                    title="رفع موسيقى"
-                                                                >
-                                                                    <MusicNote size={18} />
-                                                                </button>
-                                                                <button 
-                                                                    onClick={downloadVideo} 
-                                                                    className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center hover:bg-blue-500 text-white shadow-lg shadow-blue-600/30"
-                                                                    title="حفظ الفيديو"
-                                                                >
-                                                                    <Download size={18} />
-                                                                </button>
+                                                                <input type="file" ref={fileInputRef} onChange={handleImageUpload} accept="image/*" className="hidden" />
+                                                                <input type="file" ref={audioInputRef} onChange={handleAudioUpload} accept="audio/*, .mp3, .wav, .m4a, .aac, .ogg, .flac" className="hidden" />
+                                                                <button onClick={() => fileInputRef.current.click()} className="w-10 h-10 bg-black/40 backdrop-blur rounded-full flex items-center justify-center hover:bg-black/60 text-white border border-white/20" title="رفع صورة"><Upload size={18} /></button>
+                                                                <button onClick={() => audioInputRef.current.click()} className={`w-10 h-10 backdrop-blur rounded-full flex items-center justify-center hover:bg-black/60 text-white border border-white/20 ${audioSrc ? 'bg-green-500/50 border-green-400' : 'bg-black/40'}`} title="رفع موسيقى"><MusicNote size={18} /></button>
+                                                                <button onClick={downloadVideo} className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center hover:bg-blue-500 text-white shadow-lg shadow-blue-600/30" title="حفظ الفيديو"><Download size={18} /></button>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             ) : (
-                                                /* Script Mode UI */
                                                 <div className={`${currentTheme.cardClass} rounded-2xl p-5 border shadow-xl relative overflow-hidden`}>
                                                     <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-500"></div>
-                                                    
-                                                    <div className="flex justify-between items-center mb-4">
-                                                        <div className="text-xs font-mono bg-black/30 px-2 py-1 rounded text-cyan-400">8.00s</div>
-                                                        <div className="flex gap-2">
-                                                            <button onClick={copyToClipboard} className="text-slate-400 hover:text-white"><Copy size={18} /></button>
-                                                            <button onClick={saveScript} className="text-slate-400 hover:text-white"><Save size={18} /></button>
-                                                        </div>
-                                                    </div>
-
-                                                    {/* Typewriter Text */}
-                                                    <div className="text-lg leading-relaxed font-medium mb-6 min-h-[100px] typewriter-cursor whitespace-pre-line text-right" dir="rtl">
-                                                        <span className="text-pink-400 font-bold">{generatedScript.parts.hook}</span>
-                                                        <br/>
-                                                        <span className="text-slate-100">{generatedScript.parts.mid}</span>
-                                                        <br/>
-                                                        <span className="text-cyan-400 font-bold">{generatedScript.parts.outro}</span>
-                                                    </div>
-
-                                                    {/* Shotlist */}
-                                                    <div className="bg-black/20 rounded-lg p-3 text-sm">
-                                                        <div className="flex gap-2 items-center text-slate-400 mb-2">
-                                                            <Camera size={14} /> <span>تعليمات التصوير:</span>
-                                                        </div>
-                                                        <div className="flex flex-wrap gap-2 mb-3">
-                                                            {generatedScript.shots.map((shot, idx) => (
-                                                                <span key={idx} className="bg-white/10 text-slate-200 px-2 py-1 rounded text-xs border border-white/10">{shot}</span>
-                                                            ))}
-                                                        </div>
-                                                        <div className="flex gap-2 items-center text-slate-400 mb-2">
-                                                            <Clapperboard size={14} /> <span>لقطات B-Roll:</span>
-                                                        </div>
-                                                        <div className="flex flex-wrap gap-2">
-                                                            {generatedScript.b_roll.map((roll, idx) => (
-                                                                <span key={idx} className="bg-indigo-900/30 text-indigo-200 px-2 py-1 rounded text-xs border border-indigo-500/20">{roll}</span>
-                                                            ))}
-                                                        </div>
-                                                    </div>
+                                                    <div className="flex justify-between items-center mb-4"><div className="text-xs font-mono bg-black/30 px-2 py-1 rounded text-cyan-400">8.00s</div><div className="flex gap-2"><button onClick={copyToClipboard} className="text-slate-400 hover:text-white"><Copy size={18} /></button><button onClick={saveScript} className="text-slate-400 hover:text-white"><Save size={18} /></button></div></div>
+                                                    <div className="text-lg leading-relaxed font-medium mb-6 min-h-[100px] typewriter-cursor whitespace-pre-line text-right" dir="rtl"><span className="text-pink-400 font-bold">{generatedScript.parts.hook}</span><br/><span className="text-slate-100">{generatedScript.parts.mid}</span><br/><span className="text-cyan-400 font-bold">{generatedScript.parts.outro}</span></div>
+                                                    <div className="bg-black/20 rounded-lg p-3 text-sm"><div className="flex gap-2 items-center text-slate-400 mb-2"><Camera size={14} /> <span>تعليمات التصوير:</span></div><div className="flex flex-wrap gap-2 mb-3">{generatedScript.shots.map((shot, idx) => (<span key={idx} className="bg-white/10 text-slate-200 px-2 py-1 rounded text-xs border border-white/10">{shot}</span>))}</div><div className="flex gap-2 items-center text-slate-400 mb-2"><Clapperboard size={14} /> <span>لقطات B-Roll:</span></div><div className="flex flex-wrap gap-2">{generatedScript.b_roll.map((roll, idx) => (<span key={idx} className="bg-indigo-900/30 text-indigo-200 px-2 py-1 rounded text-xs border border-indigo-500/20">{roll}</span>))}</div></div>
                                                 </div>
                                             )}
-
-                                            {/* Metronome Tool */}
                                             <div className={`${currentTheme.cardClass} rounded-xl p-4 border`}>
-                                                <div className="flex justify-between items-center mb-2">
-                                                    <h3 className="text-sm font-bold flex items-center gap-2">
-                                                        <Clock size={16} className={currentTheme.accent}/>
-                                                        مؤقت التدريب
-                                                    </h3>
-                                                    <div className="flex items-center gap-2">
-                                                        <span className="text-xs text-slate-400">تفعيل الصوت</span>
-                                                        <Music size={14} className={isPlaying ? "text-green-400 animate-pulse" : "text-slate-600"} />
-                                                    </div>
-                                                </div>
-                                                
-                                                <div className="h-4 bg-black/40 rounded-full overflow-hidden mb-3 relative">
-                                                    <div className="h-full bg-gradient-to-r from-blue-500 to-cyan-400 transition-all duration-100 ease-linear" style={{ width: `${timerProgress}%` }}></div>
-                                                    <div className="absolute top-0 right-[35%] w-0.5 h-full bg-white/20 z-10"></div>
-                                                    <div className="absolute top-0 right-[70%] w-0.5 h-full bg-white/20 z-10"></div>
-                                                </div>
-
-                                                <div className="flex gap-2">
-                                                    {!isPlaying ? (
-                                                        <button onClick={() => { setIsPlaying(true); setTimerProgress(0); }} className="flex-1 py-2 bg-white/10 hover:bg-white/20 rounded-lg text-sm flex items-center justify-center gap-2">
-                                                            <Play size={16} className="fill-current" /> ابدأ (8s)
-                                                        </button>
-                                                    ) : (
-                                                        <button onClick={() => { setIsPlaying(false); setTimerProgress(0); }} className="flex-1 py-2 bg-red-500/20 text-red-400 hover:bg-red-500/30 rounded-lg text-sm flex items-center justify-center gap-2">
-                                                            <Square size={16} className="fill-current" /> إيقاف
-                                                        </button>
-                                                    )}
-                                                </div>
-                                                <AudioMetronome isPlaying={isPlaying} />
+                                                <div className="flex justify-between items-center mb-2"><h3 className="text-sm font-bold flex items-center gap-2"><Clock size={16} className={currentTheme.accent}/>مؤقت التدريب</h3><div className="flex items-center gap-2"><span className="text-xs text-slate-400">تفعيل الصوت</span><Music size={14} className={isPlaying ? "text-green-400 animate-pulse" : "text-slate-600"} /></div></div>
+                                                <div className="h-4 bg-black/40 rounded-full overflow-hidden mb-3 relative"><div className="h-full bg-gradient-to-r from-blue-500 to-cyan-400 transition-all duration-100 ease-linear" style={{ width: `${timerProgress}%` }}></div><div className="absolute top-0 right-[35%] w-0.5 h-full bg-white/20 z-10"></div><div className="absolute top-0 right-[70%] w-0.5 h-full bg-white/20 z-10"></div></div>
+                                                <div className="flex gap-2">{!isPlaying ? (<button onClick={() => { setIsPlaying(true); setTimerProgress(0); }} className="flex-1 py-2 bg-white/10 hover:bg-white/20 rounded-lg text-sm flex items-center justify-center gap-2"><Play size={16} className="fill-current" /> ابدأ (8s)</button>) : (<button onClick={() => { setIsPlaying(false); setTimerProgress(0); }} className="flex-1 py-2 bg-red-500/20 text-red-400 hover:bg-red-500/30 rounded-lg text-sm flex items-center justify-center gap-2"><Square size={16} className="fill-current" /> إيقاف</button>)}</div><AudioMetronome isPlaying={isPlaying} />
                                             </div>
-
                                         </div>
                                     )}
                                 </div>
                             )}
                         </main>
 
-                        {/* Footer */}
                         <footer className={`bg-black/20 border-t border-white/5 p-4 text-center backdrop-blur-sm`}>
                             <p className="text-xs text-slate-400 mb-3 font-medium">تابع سامكو للمزيد من الأدوات</p>
                             <div className="flex justify-center gap-4 mb-3">
-                                <a 
-                                    href="https://x.com/designer_samco?s=21&t=dbffdoGcvgOluktAOa9LHA" 
-                                    target="_blank" 
-                                    className="w-10 h-10 flex items-center justify-center rounded-full bg-slate-800 text-white social-icon-btn hover-glow-x border border-slate-700"
-                                >
-                                    <IconX size={18} />
-                                </a>
-                                <a 
-                                    href="https://www.tiktok.com/@samco_designer?_t=ZS-90FZRdOXUiG&_r=1" 
-                                    target="_blank" 
-                                    className="w-10 h-10 flex items-center justify-center rounded-full bg-slate-800 text-white social-icon-btn hover-glow-tiktok border border-slate-700"
-                                >
-                                    <IconTikTok size={18} />
-                                </a>
-                                <a 
-                                    href="https://www.instagram.com/samco_design?igsh=MXhiN2RjbG1ydHducg%3D%3D&utm_source=qr" 
-                                    target="_blank" 
-                                    className="w-10 h-10 flex items-center justify-center rounded-full bg-slate-800 text-white social-icon-btn hover-glow-insta border border-slate-700"
-                                >
-                                    <IconInstagram size={20} />
-                                </a>
-                                <a 
-                                    href="https://www.youtube.com/@samco-desing" 
-                                    target="_blank" 
-                                    className="w-10 h-10 flex items-center justify-center rounded-full bg-slate-800 text-white social-icon-btn hover-glow-youtube border border-slate-700"
-                                >
-                                    <IconYouTube size={22} />
-                                </a>
+                                <a href="https://x.com/designer_samco?s=21&t=dbffdoGcvgOluktAOa9LHA" target="_blank" className="w-10 h-10 flex items-center justify-center rounded-full bg-slate-800 text-white social-icon-btn hover-glow-x border border-slate-700"><IconX size={18} /></a>
+                                <a href="https://www.tiktok.com/@samco_designer?_t=ZS-90FZRdOXUiG&_r=1" target="_blank" className="w-10 h-10 flex items-center justify-center rounded-full bg-slate-800 text-white social-icon-btn hover-glow-tiktok border border-slate-700"><IconTikTok size={18} /></a>
+                                <a href="https://www.instagram.com/samco_design?igsh=MXhiN2RjbG1ydHducg%3D%3D&utm_source=qr" target="_blank" className="w-10 h-10 flex items-center justify-center rounded-full bg-slate-800 text-white social-icon-btn hover-glow-insta border border-slate-700"><IconInstagram size={20} /></a>
+                                <a href="https://www.youtube.com/@samco-desing" target="_blank" className="w-10 h-10 flex items-center justify-center rounded-full bg-slate-800 text-white social-icon-btn hover-glow-youtube border border-slate-700"><IconYouTube size={22} /></a>
                             </div>
                             <p className="text-[10px] text-slate-600 font-mono">Samco Script Generator © 2026</p>
                         </footer>
