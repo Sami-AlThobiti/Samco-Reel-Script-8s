@@ -103,6 +103,16 @@
         /* Video Animation Classes */
         .ken-burns { animation: kenBurns 15s ease-out infinite alternate; }
         @keyframes kenBurns { from { transform: scale(1); } to { transform: scale(1.15); } }
+        
+        .loading-spinner {
+            border: 3px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top: 3px solid #fff;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     </style>
 </head>
 <body>
@@ -175,6 +185,7 @@
             brand: { hooks: ["تعبت من البحث عن جودة؟", "عرض ما يتفوت لليوم فقط!", "غيّر حياتك مع منتجنا."], mids: ["وفرنا لك الحل المثالي...", "الجودة اللي تستحقها...", "وبسعر خيالي لفترة محدودة..."], outros: ["اطلب الآن من البايو.", "الكمية محدودة!", "استخدم كود SAMCO."], shots: ["Product Hero Shot", "Unboxing", "User Testimonial"], b_roll: ["استخدام المنتج", "تصفح الموقع", "سعادة العميل"], img_prompt: "luxury product photography advertising clean background high end" }
         };
 
+        // --- Helper: Text Wrap for Canvas ---
         function wrapText(ctx, text, x, y, maxWidth, lineHeight, color) {
             const words = text.split(' ');
             let line = '';
@@ -245,6 +256,8 @@
             const [currentScene, setCurrentScene] = useState(0); 
             const [isVideoPlaying, setIsVideoPlaying] = useState(false);
             const [audioSrc, setAudioSrc] = useState(null); 
+            const [isProcessing, setIsProcessing] = useState(false); // NEW STATE
+            
             const fileInputRef = useRef(null);
             const audioInputRef = useRef(null); 
             const audioRef = useRef(new Audio()); 
@@ -330,128 +343,178 @@
                 setToast("تم الحفظ في المكتبة!");
             };
 
-            // --- IMPROVED VIDEO EXPORT FUNCTION ---
+            // --- ROBUST VIDEO EXPORT FUNCTION ---
             const downloadVideo = async () => {
                 if (!videoImages || videoImages.length < 3) {
                     setToast("الرجاء توليد الصور أولاً");
                     return;
                 }
                 
-                setToast("جاري معالجة وتصدير الفيديو...");
+                setIsProcessing(true);
+                setToast("جاري تحضير الموارد... يرجى الانتظار");
                 
-                const canvas = document.createElement('canvas');
-                canvas.width = 720; canvas.height = 1280;
-                const ctx = canvas.getContext('2d');
-                
-                const loadedImages = await Promise.all(videoImages.map(src => {
-                    return new Promise((resolve) => {
-                        const img = new Image();
-                        img.crossOrigin = "anonymous";
-                        img.onload = () => resolve(img);
-                        img.onerror = () => resolve(null);
-                        img.src = src;
-                    });
-                }));
-
-                const stream = canvas.captureStream(30);
-                
-                let audioContext;
-                if (audioSrc) {
-                    try {
-                        const AudioCtx = window.AudioContext || window.webkitAudioContext;
-                        audioContext = new AudioCtx();
-                        const response = await fetch(audioSrc);
-                        const arrayBuffer = await response.arrayBuffer();
-                        const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
-                        
-                        const audioDest = audioContext.createMediaStreamDestination();
-                        const audioSource = audioContext.createBufferSource();
-                        audioSource.buffer = audioBuffer;
-                        audioSource.connect(audioDest);
-                        audioSource.start(0);
-                        
-                        const audioTracks = audioDest.stream.getAudioTracks();
-                        if (audioTracks.length > 0) stream.addTrack(audioTracks[0]);
-                    } catch(e) { console.error("Audio Error:", e); }
-                }
-
-                const chunks = [];
-                // Check for MP4 support
-                let mimeType = 'video/webm';
-                let fileExt = 'webm';
-                
-                if (MediaRecorder.isTypeSupported('video/mp4; codecs=h264')) {
-                    mimeType = 'video/mp4; codecs=h264';
-                    fileExt = 'mp4';
-                } else if (MediaRecorder.isTypeSupported('video/mp4')) {
-                    mimeType = 'video/mp4';
-                    fileExt = 'mp4';
-                }
-
-                const mediaRecorder = new MediaRecorder(stream, { mimeType });
-                
-                mediaRecorder.ondataavailable = (e) => { if (e.data.size > 0) chunks.push(e.data); };
-                mediaRecorder.onstop = () => {
-                    const blob = new Blob(chunks, { type: mimeType });
-                    const url = URL.createObjectURL(blob);
-                    const a = document.createElement('a');
-                    a.href = url;
-                    // Force MP4 naming for compatibility if WebM is used, many players support it.
-                    // If native MP4 was supported, it will be a true MP4.
-                    a.download = `samco_reel_${generatedScript.id}.${fileExt === 'mp4' ? 'mp4' : 'mp4'}`; 
-                    a.click();
-                    setToast("تم تحميل الفيديو بنجاح!");
-                    if (audioContext) audioContext.close();
-                };
-
-                mediaRecorder.start();
-
-                const duration = 7500; 
-                let startTime = Date.now();
-                
-                const renderFrame = () => {
-                    const now = Date.now();
-                    const elapsed = now - startTime;
-                    if (elapsed >= duration) { mediaRecorder.stop(); return; }
-
-                    let sceneIdx = 0;
-                    if (elapsed > 2500) sceneIdx = 1;
-                    if (elapsed > 5000) sceneIdx = 2;
+                try {
+                    const canvas = document.createElement('canvas');
+                    canvas.width = 720; canvas.height = 1280;
+                    const ctx = canvas.getContext('2d');
                     
-                    const img = loadedImages[sceneIdx];
-                    if (img) {
-                        ctx.save();
-                        const sceneTime = elapsed % 2500;
-                        const scale = 1 + (sceneTime / 25000); 
-                        
-                        ctx.translate(canvas.width/2, canvas.height/2);
-                        ctx.scale(scale, scale);
-                        ctx.translate(-canvas.width/2, -canvas.height/2);
-                        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-                        ctx.restore();
-                        
-                        ctx.fillStyle = "rgba(0,0,0,0.5)";
-                        ctx.fillRect(0,0, canvas.width, canvas.height);
-                        
-                        ctx.font = "bold 56px 'Noto Sans Arabic', sans-serif";
-                        ctx.textAlign = "center";
-                        ctx.textBaseline = "middle";
-                        ctx.direction = "rtl";
-                        
-                        let text = ""; let color = "#FFFFFF";
-                        if (sceneIdx === 0) { text = generatedScript.parts.hook; color = "#F472B6"; } 
-                        else if (sceneIdx === 1) { text = generatedScript.parts.mid; color = "#FFFFFF"; }
-                        else { text = generatedScript.parts.outro; color = "#22D3EE"; } 
+                    // 1. Force Load Images First
+                    const loadImage = (src) => {
+                        return new Promise((resolve) => {
+                            const img = new Image();
+                            img.crossOrigin = "anonymous";
+                            img.onload = () => resolve(img);
+                            img.onerror = () => resolve(null); // Continue even if one fails
+                            img.src = src;
+                            // Safety timeout
+                            setTimeout(() => resolve(null), 10000);
+                        });
+                    };
 
-                        wrapText(ctx, text, canvas.width / 2, canvas.height / 2, 650, 80, color);
+                    const loadedImages = await Promise.all(videoImages.map(src => loadImage(src)));
+                    
+                    if (loadedImages.some(img => img === null)) {
+                        setToast("خطأ: تعذر تحميل بعض الصور.");
+                        setIsProcessing(false);
+                        return;
                     }
-                    requestAnimationFrame(renderFrame);
-                };
-                renderFrame();
+
+                    // 2. Setup Audio
+                    let audioContext = null;
+                    const stream = canvas.captureStream(30);
+                    
+                    if (audioSrc) {
+                        try {
+                            const AudioCtx = window.AudioContext || window.webkitAudioContext;
+                            audioContext = new AudioCtx();
+                            const response = await fetch(audioSrc);
+                            const arrayBuffer = await response.arrayBuffer();
+                            const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
+                            
+                            const audioDest = audioContext.createMediaStreamDestination();
+                            const audioSource = audioContext.createBufferSource();
+                            audioSource.buffer = audioBuffer;
+                            audioSource.connect(audioDest);
+                            audioSource.start(0);
+                            
+                            const audioTracks = audioDest.stream.getAudioTracks();
+                            if (audioTracks.length > 0) stream.addTrack(audioTracks[0]);
+                        } catch(e) {
+                            console.error("Audio Setup Failed:", e);
+                            setToast("تنبيه: سيتم التصدير بدون صوت (صيغة غير مدعومة)");
+                        }
+                    }
+
+                    // 3. Determine Supported Mime Type (MP4 Priority)
+                    let mimeType = '';
+                    let extension = '';
+                    
+                    // Priority list
+                    const types = [
+                        { mime: 'video/mp4; codecs="avc1.42E01E, mp4a.40.2"', ext: 'mp4' },
+                        { mime: 'video/mp4', ext: 'mp4' },
+                        { mime: 'video/webm; codecs=vp9,opus', ext: 'webm' },
+                        { mime: 'video/webm', ext: 'webm' }
+                    ];
+
+                    for (const type of types) {
+                        if (MediaRecorder.isTypeSupported(type.mime)) {
+                            mimeType = type.mime;
+                            extension = type.ext;
+                            break;
+                        }
+                    }
+
+                    if (!mimeType) {
+                        setToast("عذراً، متصفحك لا يدعم تصدير الفيديو.");
+                        setIsProcessing(false);
+                        return;
+                    }
+
+                    setToast(`جاري التصدير بصيغة ${extension.toUpperCase()}...`);
+
+                    const chunks = [];
+                    const mediaRecorder = new MediaRecorder(stream, { mimeType });
+                    
+                    mediaRecorder.ondataavailable = (e) => { if (e.data.size > 0) chunks.push(e.data); };
+                    mediaRecorder.onstop = () => {
+                        const blob = new Blob(chunks, { type: mimeType });
+                        const url = URL.createObjectURL(blob);
+                        const a = document.createElement('a');
+                        a.href = url;
+                        // Determine final filename
+                        a.download = `samco_reel_${generatedScript.id}.${extension}`; 
+                        document.body.appendChild(a);
+                        a.click();
+                        document.body.removeChild(a);
+                        
+                        setToast("تم تحميل الفيديو بنجاح!");
+                        setIsProcessing(false);
+                        if (audioContext) audioContext.close();
+                    };
+
+                    mediaRecorder.start();
+
+                    // 4. Render Loop
+                    const duration = 8000; 
+                    let startTime = Date.now();
+                    
+                    const renderFrame = () => {
+                        const now = Date.now();
+                        const elapsed = now - startTime;
+                        
+                        if (elapsed >= duration) {
+                            mediaRecorder.stop();
+                            return;
+                        }
+
+                        let sceneIdx = 0;
+                        if (elapsed > 2500) sceneIdx = 1;
+                        if (elapsed > 5000) sceneIdx = 2;
+                        
+                        const img = loadedImages[sceneIdx];
+                        if (img) {
+                            ctx.save();
+                            // Zoom Effect
+                            const sceneTime = elapsed % 2500;
+                            const scale = 1 + (sceneTime / 25000); 
+                            
+                            ctx.translate(canvas.width/2, canvas.height/2);
+                            ctx.scale(scale, scale);
+                            ctx.translate(-canvas.width/2, -canvas.height/2);
+                            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                            ctx.restore();
+                            
+                            ctx.fillStyle = "rgba(0,0,0,0.5)";
+                            ctx.fillRect(0,0, canvas.width, canvas.height);
+                            
+                            ctx.font = "bold 56px 'Noto Sans Arabic', sans-serif";
+                            ctx.textAlign = "center";
+                            ctx.textBaseline = "middle";
+                            ctx.direction = "rtl";
+                            
+                            let text = ""; let color = "#FFFFFF";
+                            if (sceneIdx === 0) { text = generatedScript.parts.hook; color = "#F472B6"; } 
+                            else if (sceneIdx === 1) { text = generatedScript.parts.mid; color = "#FFFFFF"; }
+                            else { text = generatedScript.parts.outro; color = "#22D3EE"; } 
+
+                            wrapText(ctx, text, canvas.width / 2, canvas.height / 2, 650, 80, color);
+                        }
+                        
+                        requestAnimationFrame(renderFrame);
+                    };
+                    
+                    renderFrame();
+
+                } catch (err) {
+                    console.error("Export Error:", err);
+                    setToast("حدث خطأ غير متوقع. حاول مرة أخرى.");
+                    setIsProcessing(false);
+                }
             };
 
             useEffect(() => { const loaded = localStorage.getItem('samco_scripts'); if (loaded) setSavedScripts(JSON.parse(loaded)); }, []);
-            const copyToClipboard = () => { if (!generatedScript) return; const text = `سكربت: ${config.type}\nالمدة: 8 ثواني\n...\n`; navigator.clipboard.writeText(text); setToast("تم نسخ السكربت!"); };
+            const copyToClipboard = () => { if (!generatedScript) return; const text = `سكربت: ${config.type}\nالمدة: 8 ثواني\n----------------\nHook: ${generatedScript.parts.hook}\nBody: ${generatedScript.parts.mid}\nOutro: ${generatedScript.parts.outro}\n----------------\nShotlist: ${generatedScript.shots.join(', ')}`; navigator.clipboard.writeText(text); setToast("تم نسخ السكربت!"); };
             const getCurrentSceneText = () => { if (!generatedScript) return ""; if (currentScene === 0) return generatedScript.parts.hook; if (currentScene === 1) return generatedScript.parts.mid; return generatedScript.parts.outro; };
             const currentTheme = THEMES[theme];
 
@@ -522,7 +585,7 @@
                                                                 <input type="file" ref={audioInputRef} onChange={handleAudioUpload} accept="audio/*, .mp3, .wav, .m4a, .aac, .ogg, .flac" className="hidden" />
                                                                 <button onClick={() => fileInputRef.current.click()} className="w-10 h-10 bg-black/40 backdrop-blur rounded-full flex items-center justify-center hover:bg-black/60 text-white border border-white/20" title="رفع صورة"><Upload size={18} /></button>
                                                                 <button onClick={() => audioInputRef.current.click()} className={`w-10 h-10 backdrop-blur rounded-full flex items-center justify-center hover:bg-black/60 text-white border border-white/20 ${audioSrc ? 'bg-green-500/50 border-green-400' : 'bg-black/40'}`} title="رفع موسيقى"><MusicNote size={18} /></button>
-                                                                <button onClick={downloadVideo} className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center hover:bg-blue-500 text-white shadow-lg shadow-blue-600/30" title="حفظ الفيديو"><Download size={18} /></button>
+                                                                <button onClick={downloadVideo} disabled={isProcessing} className={`w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center hover:bg-blue-500 text-white shadow-lg shadow-blue-600/30 ${isProcessing ? 'opacity-50 cursor-not-allowed' : ''}`} title="حفظ الفيديو">{isProcessing ? <div className="loading-spinner"></div> : <Download size={18} />}</button>
                                                             </div>
                                                         </div>
                                                     </div>
